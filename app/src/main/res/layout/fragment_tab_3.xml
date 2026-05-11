@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 信标配置板块 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="信标配置（先扫描，再选择）"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:layout_marginBottom="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="信标 1:"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spinner_beacon_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="信标 2:"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spinner_beacon_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="信标 3:"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spinner_beacon_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_scan_devices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🔍 扫描周围信标设备"
+                    android:textSize="14sp"
+                    android:backgroundTint="@android:color/holo_blue_light" />
+
+                <TextView
+                    android:id="@+id/tv_scan_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="未扫描"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- 罗盘 -->
+        <com.ckos.ble.ui.main.CompassView
+            android:id="@+id/compass_view"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp" />
+
+        <!-- 状态信息 -->
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="手机位置: 未初始化"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_position"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="信标位置：未计算"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:textColor="@android:color/holo_blue_dark" />
+
+        <TextView
+            android:id="@+id/tv_calibrating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="请先扫描并选择三个信标设备"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:textStyle="bold" />
+
+        <!-- 定位操作 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:elevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="定位操作"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:layout_marginBottom="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="移动距离(m):"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/et_step_distance"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:text="2"
+                        android:layout_marginStart="10dp"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="导航目标:"
+                        android:textSize="14sp" />
+
+                    <Spinner
+                        android:id="@+id/spinner_target"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/btn_mark_point"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="标记原点(0,0)"
+                        android:textSize="13sp"
+                        android:enabled="false"
+                        android:alpha="0.5" />
+
+                    <Button
+                        android:id="@+id/btn_start_nav"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="开始导航"
+                        android:textSize="13sp" />
+
+                    <Button
+                        android:id="@+id/btn_reset"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="重置"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- 平面直角坐标系 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="467dp"
+            android:layout_marginTop="15dp"
+            android:elevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="平面坐标系（可拖动平移，1米=100像素）"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btn_reset_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="重置视图"
+                        android:textSize="12sp"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="4dp" />
+                </LinearLayout>
+
+                <com.ckos.ble.ui.main.CoordinateSystemView
+                    android:id="@+id/coordinate_system_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffffff" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- RSSI 校准设置 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:elevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="RSSI 校准设置（每个信标独立设置 1m RSSI 与路径损耗指数 n）"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:layout_marginBottom="10dp" />
+
+                <!-- 信标1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center_vertical">
+                    <TextView android:layout_width="60dp" android:layout_height="wrap_content"
+                        android:text="信标1:" android:textSize="14sp" android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center_vertical">
+                    <TextView android:layout_width="80dp" android:layout_height="wrap_content"
+                        android:text="1m RSSI:" android:textSize="13sp" />
+                    <EditText android:id="@+id/et_one_meter_rssi_1"
+                        android:layout_width="80dp" android:layout_height="wrap_content"
+                        android:inputType="numberSigned" android:text="-55" android:textSize="13sp" />
+                    <TextView android:layout_width="50dp" android:layout_height="wrap_content"
+                        android:text="n 值:" android:textSize="13sp" android:layout_marginStart="10dp" />
+                    <EditText android:id="@+id/et_n_value_1"
+                        android:layout_width="80dp" android:layout_height="wrap_content"
+                        android:inputType="numberDecimal" android:text="2.45" android:textSize="13sp" />
+                </LinearLayout>
+
+                <!-- 信标2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center_vertical">
+                    <TextView android:layout_width="60dp" android:layout_height="wrap_content"
+                        android:text="信标2:" android:textSize="14sp" android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center_vertical">
+                    <TextView android:layout_width="80dp" android:layout_height="wrap_content"
+                        android:text="1m RSSI:" android:textSize="13sp" />
+                    <EditText android:id="@+id/et_one_meter_rssi_2"
+                        android:layout_width="80dp" android:layout_height="wrap_content"
+                        android:inputType="numberSigned" android:text="-76" android:textSize="13sp" />
+                    <TextView android:layout_width="50dp" android:layout_height="wrap_content"
+                        android:text="n 值:" android:textSize="13sp" android:layout_marginStart="10dp" />
+                    <EditText android:id="@+id/et_n_value_2"
+                        android:layout_width="80dp" android:layout_height="wrap_content"
+                        android:inputType="numberDecimal" android:text="1.5" android:textSize="13sp" />
+                </LinearLayout>
+
+                <!-- 信标3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center_vertical">
+                    <TextView android:layout_width="60dp" android:layout_height="wrap_content"
+                        android:text="信标3:" android:textSize="14sp" android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical">
+                    <TextView android:layout_width="80dp" android:layout_height="wrap_content"
+                        android:text="1m RSSI:" android:textSize="13sp" />
+                    <EditText android:id="@+id/et_one_meter_rssi_3"
+                        android:layout_width="80dp" android:layout_height="wrap_content"
+                        android:inputType="numberSigned" android:text="-60" android:textSize="13sp" />
+                    <TextView android:layout_width="50dp" android:layout_height="wrap_content"
+                        android:text="n 值:" android:textSize="13sp" android:layout_marginStart="10dp" />
+                    <EditText android:id="@+id/et_n_value_3"
+                        android:layout_width="80dp" android:layout_height="wrap_content"
+                        android:inputType="numberDecimal" android:text="2.0" android:textSize="13sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="n 值通常 2~4，视环境调整；RSSI 差值越大 n 越大"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_marginBottom="8dp" />
+
+                <Button
+                    android:id="@+id/btn_save_rssi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="保存所有校准参数"
+                    android:textSize="13sp"
+                    android:backgroundTint="@android:color/holo_green_light" />
+
+                <TextView
+                    android:id="@+id/tv_realtime_rssi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="实时RSSI: 等待扫描..."
+                    android:textSize="13sp"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:background="#f0f0f0"
+                    android:layout_marginTop="10dp" />
+
+                <Button
+                    android:id="@+id/btn_scan_devices_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="🔍 扫描周围信标设备"
+                    android:textSize="14sp"
+                    android:backgroundTint="@android:color/holo_blue_light" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- 采样点计数 -->
+        <TextView
+            android:id="@+id/tv_point_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已采集点数：0 / 15"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"/>
+
+        <!-- 采样点详细信息 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:elevation="2dp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxHeight="300dp"
+                android:padding="8dp"
+                android:fillViewport="true">
+
+                <TextView
+                    android:id="@+id/tv_sample_points_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="采样点详情将显示在这里"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace"
+                    android:textColor="@android:color/black"
+                    android:textIsSelectable="true" />
+            </ScrollView>
+        </androidx.cardview.widget.CardView>
+
+        <!-- 使用说明 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="使用流程：\n1. 在上方选择或扫描三个信标设备\n2. 查看罗盘指向\n3. 选择【导航目标】\n4. 点击【标记原点】开始采集\n5. 移动后点击【记录新位置】\n6. 重复3次后自动解算坐标，跟随罗盘导航"
+            android:textSize="12sp"
+            android:textColor="@android:color/darker_gray"
+            android:lineSpacingMultiplier="1.3"
+            android:background="#f5f5f5"
+            android:padding="10dp" />
+
+    </LinearLayout>
+</ScrollView>

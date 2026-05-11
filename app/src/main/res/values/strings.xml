@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">蓝牙定位</string>
+    <string name="tab_text_1">蓝牙搜索</string>
+    <string name="tab_text_2">单点定位</string>
+    <string name="tab_text_3">三点定位</string>
+    <string name="scan_mode_label">模式：</string>
+    <string name="scan_mode_l">BLE扫描</string>
+    <string name="scan_mode_2">BT扫描</string>
+    <string name="scan_info_label">通知：</string>
+    <string name="scan_button_1">开始扫描</string>
+    <string name="scan_button_2">停止扫描</string>
+    <string name="name_label">设备名：</string>
+    <string name="rssi_label">信号强度：</string>
+    <string name="address_label">物理地址：</string>
+    <string name="position_parameters_label">定位参数：</string>
+    <string name="one_meter_rssi_label">1米Rssi：</string>
+    <string name="n_value_label">n_Value：</string>
+    <string name="position_button_start">开始定位</string>
+    <string name="position_button_stop">停止定位</string>
+    <string name="sms_parameters_label">短信参数：</string>
+    <string name="phone_number_label">手机号码：</string>
+    <string name="distance_label">距离(米)：</string>
+    <string name="confirm_button">确认</string>
+    <string name="cancel_button">取消</string>
+    <string name="name_label_1">1.设备名：</string>
+    <string name="name_label_2">2.设备名：</string>
+    <string name="name_label_3">3.设备名：</string>
+    <string name="x_point_label">X：</string>
+    <string name="y_point_label">Y：</string>
+    <string name="device_not_found">暂未发现该设备</string>
+</resources>
